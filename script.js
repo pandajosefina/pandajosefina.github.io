@@ -115,6 +115,15 @@ function annotate(annotation_text) {
 
 }
 
+
+function change_title(title_text) {
+    d3.select('body').select('#subtitle')
+        .append('div')
+        .attr('class', 'subtitle has-text-centered')
+        .html(title_text)
+
+}
+
 // fill map function 
 function fillMap(year, json_data, csv_data) {
 
@@ -175,12 +184,19 @@ function ready([json_data, csv_data]) {
 
     fillMap("2020-01", json_data, csv_data)
     annotate(annotation_china);
+    change_title("Januaray")
 
 
-    // 2020 feb
+    // 2020 jan
     d3.select("#first")
         .on('click', function () {
+            //clear map and annotation
             d3.select("#map").html("");
+            d3.select("#annotations").html("");
+            d3.selectAll(".subtitle").html("");
+
+            change_title("Januaray")
+
             d3.select("#first").attr("class", "button is-link")
             d3.select("#second").attr("class", "button is-link is-light")
             d3.select("#third").attr("class", "button is-link is-light")
@@ -194,6 +210,9 @@ function ready([json_data, csv_data]) {
         .on('click', function () {
             d3.select("#map").html("");
             d3.select("#annotations").html("");
+            d3.selectAll(".subtitle").html("");
+
+            change_title("March")
             d3.select("#first").attr("class", "button is-link is-light")
             d3.select("#second").attr("class", "button is-link")
             d3.select("#third").attr("class", "button is-link is-light")
@@ -201,11 +220,14 @@ function ready([json_data, csv_data]) {
             annotate(annotation_world);
         })
 
-    // 2021 mar
+    // 2020 december
     d3.select("#third")
         .on('click', function () {
             d3.select("#map").html("");
             d3.select("#annotations").html("");
+            d3.selectAll(".subtitle").html("");
+
+            change_title("December")
             d3.select("#first").attr("class", "button is-link is-light")
             d3.select("#second").attr("class", "button is-link is-light")
             d3.select("#third").attr("class", "button is-link ")

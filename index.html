@@ -10,21 +10,18 @@
 <script src=" https://unpkg.com/topojson-client@3"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
+
 <header>
     <p class="title is-2 has-text-centered">Covid developments in 2020</p>
 </header>
 
 <body>
     <div id="buttons" class="box p-3 has-text-centered is-shadowless">
-        <div>
-            <button id="first" class="button is-link">2020 Jan</button>
-            <button id="second" class="button is-link is-light">2020 Mar</button>
-            <button id="third" class="button is-link is-light">2020 Dec</button>
-        </div>
-        <p id="source"><strong>Data source:</strong> <a href="https://covid19.who.int/WHO-COVID-19-global-data.csv">WHO
-                Covid
-                Dataset</a> </p>
+        <button id="first" class="button is-link">1</button>
+        <button id="second" class="button is-link is-light">2</button>
+        <button id="third" class="button is-link is-light">3</button>
     </div>
+    <div id="subtitle"></div>
     <div id="map" style="text-align:center;">
     </div>
     <div id="annotation"></div>
@@ -32,9 +29,13 @@
         <text id="country"></text><br>
         <text id="new_cases"></text><br>
     </div>
-    <script type='text/javascript' src='script.js'></script>
+    <div class="has-text-centered ">
+        <p id="source"><strong>Data source:</strong> <a href="https://covid19.who.int/WHO-COVID-19-global-data.csv">WHO
+                Covid
+                Dataset</a> </p>
+    </div>
 </body>
-
+<script type='text/javascript' src='script.js'></script>
 
 
 </html>
