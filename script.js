@@ -182,57 +182,107 @@ Promise.all(promises).then(ready)
 
 function ready([json_data, csv_data]) {
 
+    // initiate
     fillMap("2020-01", json_data, csv_data)
     annotate(annotation_china);
-    change_title("Januaray")
+    change_title("Januaray");
+    var i = 1;
 
+    function update_first() {
+        //clear map and annotation
+        d3.select("#map").html("");
+        d3.select("#annotations").html("");
+        d3.selectAll(".subtitle").html("");
+
+        change_title("Januaray")
+
+        d3.select("#first").attr("class", "button is-link")
+        d3.select("#second").attr("class", "button is-link is-light")
+        d3.select("#third").attr("class", "button is-link is-light")
+        fillMap("2020-01", json_data, csv_data)
+        annotate(annotation_china);
+    }
+
+    function update_second() {
+        d3.select("#map").html("");
+        d3.select("#annotations").html("");
+        d3.selectAll(".subtitle").html("");
+
+        change_title("March")
+        d3.select("#first").attr("class", "button is-link is-light")
+        d3.select("#second").attr("class", "button is-link")
+        d3.select("#third").attr("class", "button is-link is-light")
+        fillMap("2020-03", json_data, csv_data)
+        annotate(annotation_world);
+    }
+
+    function update_third() {
+        d3.select("#map").html("");
+        d3.select("#annotations").html("");
+        d3.selectAll(".subtitle").html("");
+
+        change_title("December")
+        d3.select("#first").attr("class", "button is-link is-light")
+        d3.select("#second").attr("class", "button is-link is-light")
+        d3.select("#third").attr("class", "button is-link ")
+        fillMap("2020-12", json_data, csv_data)
+        annotate(annotation_final);
+    }
+
+    function update_content(i) {
+        switch (i) {
+            case 1:
+                // console.log('running first');
+                update_first();
+                break;
+            case 2:
+                // console.log('running second');
+                update_second();
+                break;
+            case 3:
+                // console.log('running third');
+                update_third();
+                break;
+        }
+    }
 
     // 2020 jan
     d3.select("#first")
         .on('click', function () {
-            //clear map and annotation
-            d3.select("#map").html("");
-            d3.select("#annotations").html("");
-            d3.selectAll(".subtitle").html("");
 
-            change_title("Januaray")
-
-            d3.select("#first").attr("class", "button is-link")
-            d3.select("#second").attr("class", "button is-link is-light")
-            d3.select("#third").attr("class", "button is-link is-light")
-            fillMap("2020-01", json_data, csv_data)
-            annotate(annotation_china);
-
+            i = 1;
+            // console.log(`clicked first button! i is ${i}`);
+            if (i) {
+                update_content(i);
+            }
         })
 
     // 2020 mar
     d3.select("#second")
         .on('click', function () {
-            d3.select("#map").html("");
-            d3.select("#annotations").html("");
-            d3.selectAll(".subtitle").html("");
-
-            change_title("March")
-            d3.select("#first").attr("class", "button is-link is-light")
-            d3.select("#second").attr("class", "button is-link")
-            d3.select("#third").attr("class", "button is-link is-light")
-            fillMap("2020-03", json_data, csv_data)
-            annotate(annotation_world);
+            i = 2;
+            // console.log(`clicked second button! i is ${i}`);
+            if (i) {
+                update_content(i);
+            }
         })
 
     // 2020 december
     d3.select("#third")
         .on('click', function () {
-            d3.select("#map").html("");
-            d3.select("#annotations").html("");
-            d3.selectAll(".subtitle").html("");
+            i = 3;
+            // console.log(`clicked third button! i is ${i}`);
+            if (i = 3) {
+                update_content(i);
+            }
+        })
 
-            change_title("December")
-            d3.select("#first").attr("class", "button is-link is-light")
-            d3.select("#second").attr("class", "button is-link is-light")
-            d3.select("#third").attr("class", "button is-link ")
-            fillMap("2020-12", json_data, csv_data)
-            annotate(annotation_final);
+    // next button
+    d3.select("#next")
+        .on('click', function () {
+            i++;
+            update_content(i);
+
         })
 
 }
